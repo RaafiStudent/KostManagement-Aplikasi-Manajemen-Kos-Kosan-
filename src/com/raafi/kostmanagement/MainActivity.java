@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
     String[] daftar;
@@ -25,7 +26,7 @@ public class MainActivity extends Activity {
     protected Cursor cursor;
     DataHelper dbcenter;
     public static MainActivity ma;
-    EditText editCari; // Tambahan variabel Cari
+    EditText editCari;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,25 +36,19 @@ public class MainActivity extends Activity {
         ma = this;
         dbcenter = new DataHelper(this);
         
-        // Inisialisasi Kolom Cari
         editCari = (EditText) findViewById(R.id.editCari);
-        
-        RefreshList(""); // Tampilkan semua data awal
+        RefreshList(""); 
 
-        // LOGIKA SEARCHING (Real-time)
+        // LOGIKA CARI
         editCari.addTextChangedListener(new TextWatcher() {
-            @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Saat user ngetik, panggil refresh list dengan kata kunci
                 RefreshList(s.toString());
             }
-            @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override
             public void afterTextChanged(Editable s) {}
         });
 
-        // Tombol Tambah
+        // TOMBOL TAMBAH
         Button btn = (Button) findViewById(R.id.btnTambah);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,13 +57,28 @@ public class MainActivity extends Activity {
                 startActivity(inte);
             }
         });
+
+        // === FITUR BARU: TOMBOL LOGOUT ===
+        Button btnLogout = (Button) findViewById(R.id.btnLogout);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                // Tampilkan pesan
+                Toast.makeText(getApplicationContext(), "Berhasil Logout!", Toast.LENGTH_SHORT).show();
+                
+                // Pindah ke Halaman Login
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                
+                // Matikan Halaman Utama (biar gak bisa di-back)
+                finish();
+            }
+        });
     }
 
-    // Fungsi RefreshList kita modifikasi biar bisa nerima keyword pencarian
+    // Fungsi RefreshList (Tidak Berubah)
     public void RefreshList(String keyword) {
         SQLiteDatabase db = dbcenter.getReadableDatabase();
-        
-        // Jika keyword kosong, ambil semua. Jika ada, filter pake LIKE
         if (keyword.equals("")) {
             cursor = db.rawQuery("SELECT * FROM penghuni", null);
         } else {
@@ -77,7 +87,6 @@ public class MainActivity extends Activity {
         
         daftar = new String[cursor.getCount()];
         cursor.moveToFirst();
-        
         for (int cc = 0; cc < cursor.getCount(); cc++) {
             cursor.moveToPosition(cc);
             daftar[cc] = cursor.getString(1).toString();
@@ -91,7 +100,6 @@ public class MainActivity extends Activity {
             public void onItemClick(AdapterView arg0, View arg1, int arg2, long arg3) {
                 final String selection = daftar[arg2];
                 final CharSequence[] dialogitem = {"Hapus Data", "Edit Data"};
-                
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Pilihan");
                 builder.setItems(dialogitem, new DialogInterface.OnClickListener() {
@@ -100,7 +108,7 @@ public class MainActivity extends Activity {
                             case 0 : // Hapus
                                 SQLiteDatabase db = dbcenter.getWritableDatabase();
                                 db.execSQL("delete from penghuni where nama = '"+selection+"'");
-                                RefreshList(""); // Refresh polos
+                                RefreshList("");
                                 break;
                             case 1 : // Edit
                                 Intent i = new Intent(MainActivity.this, UpdateActivity.class);
@@ -113,13 +121,12 @@ public class MainActivity extends Activity {
                 builder.create().show();
             }
         });
-        
         ((ArrayAdapter) ListView01.getAdapter()).notifyDataSetInvalidated();
     }
     
     @Override
     protected void onResume() {
         super.onResume();
-        RefreshList(""); // Pas balik, load semua data lagi
+        RefreshList("");
     }
 }
