@@ -16,6 +16,9 @@
         <activity android:name=".InputActivity"
           android:label="Tambah Data Penghuni"></activity>
         
+        <activity android:name=".UpdateActivity"
+          android:label="Edit Data Penghuni"></activity>
+        
         <activity
             android:name="com.raafi.kostmanagement.MainActivity"
             android:label="@string/app_name" >

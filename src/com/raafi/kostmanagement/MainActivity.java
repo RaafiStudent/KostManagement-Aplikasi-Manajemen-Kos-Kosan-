@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
         ListView01.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView arg0, View arg1, int arg2, long arg3) {
                 final String selection = daftar[arg2];
-                final CharSequence[] dialogitem = {"Hapus Data", "Lihat Detail"};
+                final CharSequence[] dialogitem = {"Hapus Data", "Edit Data"};
                 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Pilihan");
@@ -75,8 +75,10 @@ public class MainActivity extends Activity {
                                 db.execSQL("delete from penghuni where nama = '"+selection+"'");
                                 RefreshList();
                                 break;
-                            case 1 : // Pilihan Detail (Nanti bisa buat Edit)
-                                // Kosong dulu
+                            case 1 : // Pilihan Edit Data
+                                Intent i = new Intent(MainActivity.this, UpdateActivity.class);
+                                i.putExtra("nama", selection); // Kirim nama yang diklik ke halaman sebelah
+                                startActivity(i);
                                 break;
                         }
                     }
