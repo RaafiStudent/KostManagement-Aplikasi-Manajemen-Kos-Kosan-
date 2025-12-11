@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp" >
@@ -13,12 +12,21 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
+    <EditText
+        android:id="@+id/editCari"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="10dp"
+        android:hint="Cari Nama Penghuni..."
+        android:drawableRight="@android:drawable/ic_menu_search" />
+
     <Button
         android:id="@+id/btnTambah"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="20dp"
+        android:layout_below="@+id/editCari"
+        android:layout_marginTop="5dp"
         android:text="+ Tambah Penghuni Baru" />
 
     <ListView
@@ -26,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnTambah"
-        android:layout_marginTop="20dp" >
+        android:layout_marginTop="10dp" >
     </ListView>
 
 </RelativeLayout>
