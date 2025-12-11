@@ -3,7 +3,8 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="30dp" >
+    android:padding="30dp"
+    android:background="@drawable/background_app" >
 
     <TextView
         android:layout_width="wrap_content"
@@ -11,21 +12,26 @@
         android:layout_marginBottom="20dp"
         android:text="LOGIN ADMIN KOS"
         android:textSize="24sp"
-        android:textStyle="bold" />
-
+        android:textStyle="bold"
+        android:textColor="#FFFFFF" />
+    
     <EditText
         android:id="@+id/editUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username" />
-
+        android:hint="Username"
+        android:background="#80FFFFFF"
+        android:padding="10dp" />
+    
     <EditText
         android:id="@+id/editPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:background="#80FFFFFF"
+        android:padding="10dp" />
 
     <Button
         android:id="@+id/btnLogin"

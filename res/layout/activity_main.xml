@@ -1,17 +1,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp" >
+    android:padding="10dp"
+    android:background="@drawable/background_app" >
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Logout"
+        android:textSize="12sp"
+        android:background="#FF5252"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="MANAJEMEN KOS (Raafi)"
+        android:text="MANAJEMEN KOS"
         android:textSize="20sp"
-        android:textStyle="bold" />
-
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="20dp"/>
+        
     <EditText
         android:id="@+id/editCari"
         android:layout_width="match_parent"
@@ -19,8 +33,10 @@
         android:layout_below="@+id/textView1"
         android:layout_marginTop="10dp"
         android:hint="Cari Nama Penghuni..."
+        android:background="#80FFFFFF"
+        android:padding="10dp"
         android:drawableRight="@android:drawable/ic_menu_search" />
-
+        
     <Button
         android:id="@+id/btnTambah"
         android:layout_width="fill_parent"
@@ -29,22 +45,13 @@
         android:layout_marginTop="5dp"
         android:text="+ Tambah Penghuni Baru" />
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnTambah"
-        android:layout_marginTop="5dp"
-        android:text="LOGOUT / KELUAR"
-        android:textColor="#FF0000"
-        android:textStyle="bold" />
-
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnLogout"
-        android:layout_marginTop="10dp" >
+        android:layout_below="@+id/btnTambah"
+        android:layout_marginTop="10dp"
+        android:background="#90FFFFFF">
     </ListView>
-
-</RelativeLayout>
+    
+    </RelativeLayout>
