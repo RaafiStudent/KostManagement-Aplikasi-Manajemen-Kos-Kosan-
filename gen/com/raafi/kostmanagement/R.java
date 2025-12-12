@@ -29,11 +29,11 @@ public final class R {
         public static final int btnBatal=0x7f080011;
         public static final int btnKembali=0x7f080004;
         public static final int btnLogin=0x7f080007;
-        public static final int btnLogout=0x7f080008;
+        public static final int btnLogout=0x7f08000b;
         public static final int btnSimpan=0x7f080003;
-        public static final int btnTambah=0x7f08000b;
+        public static final int btnTambah=0x7f08000a;
         public static final int btnUpdate=0x7f080010;
-        public static final int editCari=0x7f08000a;
+        public static final int editCari=0x7f080009;
         public static final int editKamar=0x7f080001;
         public static final int editNama=0x7f080000;
         public static final int editPassword=0x7f080006;
@@ -43,7 +43,7 @@ public final class R {
         public static final int editTextStatus=0x7f08000f;
         public static final int editUsername=0x7f080005;
         public static final int listView1=0x7f08000c;
-        public static final int textView1=0x7f080009;
+        public static final int textView1=0x7f080008;
     }
     public static final class layout {
         public static final int activity_input=0x7f030000;

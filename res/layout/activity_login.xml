@@ -13,24 +13,28 @@
         android:text="LOGIN ADMIN KOS"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#FFFFFF" />
-    
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2" />
+     
     <EditText
         android:id="@+id/editUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Username"
-        android:background="#80FFFFFF"
-        android:padding="10dp" />
-    
+        android:background="#CCFFFFFF"
+        android:padding="10dp"
+        android:layout_marginBottom="10dp" />
+     
     <EditText
         android:id="@+id/editPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:hint="Password"
         android:inputType="textPassword"
-        android:background="#80FFFFFF"
+        android:background="#CCFFFFFF"
         android:padding="10dp" />
 
     <Button
@@ -38,6 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="MASUK" />
+        android:text="MASUK"
+        android:textStyle="bold" />
 
 </LinearLayout>

@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -22,11 +21,12 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
     String[] daftar;
     ListView ListView01;
-    Menu menu;
     protected Cursor cursor;
     DataHelper dbcenter;
     public static MainActivity ma;
-    EditText editCari;
+    
+    // Variabel EditText
+    EditText editCari; 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +35,22 @@ public class MainActivity extends Activity {
 
         ma = this;
         dbcenter = new DataHelper(this);
-        
-        editCari = (EditText) findViewById(R.id.editCari);
-        RefreshList(""); 
 
-        // LOGIKA CARI
+        // --- BAGIAN INI YANG DIPERBAIKI (JANGAN SAMPAI SALAH ID) ---
+        editCari = (EditText) findViewById(R.id.editCari); 
+        // -----------------------------------------------------------
+
+        RefreshList(""); // Tampilkan data awal
+
+        // LOGIKA PENCARIAN (Search)
         editCari.addTextChangedListener(new TextWatcher() {
+            @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 RefreshList(s.toString());
             }
+            @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
             public void afterTextChanged(Editable s) {}
         });
 
@@ -58,27 +64,24 @@ public class MainActivity extends Activity {
             }
         });
 
-        // === FITUR BARU: TOMBOL LOGOUT ===
+        // TOMBOL LOGOUT
         Button btnLogout = (Button) findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                // Tampilkan pesan
                 Toast.makeText(getApplicationContext(), "Berhasil Logout!", Toast.LENGTH_SHORT).show();
-                
-                // Pindah ke Halaman Login
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
-                
-                // Matikan Halaman Utama (biar gak bisa di-back)
                 finish();
             }
         });
     }
 
-    // Fungsi RefreshList (Tidak Berubah)
+    // FUNGSI TAMPIL DATA (Refresh List)
     public void RefreshList(String keyword) {
         SQLiteDatabase db = dbcenter.getReadableDatabase();
+        
+        // Logika Filter Pencarian
         if (keyword.equals("")) {
             cursor = db.rawQuery("SELECT * FROM penghuni", null);
         } else {
@@ -87,6 +90,7 @@ public class MainActivity extends Activity {
         
         daftar = new String[cursor.getCount()];
         cursor.moveToFirst();
+        
         for (int cc = 0; cc < cursor.getCount(); cc++) {
             cursor.moveToPosition(cc);
             daftar[cc] = cursor.getString(1).toString();
@@ -96,10 +100,12 @@ public class MainActivity extends Activity {
         ListView01.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, daftar));
         ListView01.setSelected(true);
         
+        // Klik Nama untuk Edit/Hapus
         ListView01.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView arg0, View arg1, int arg2, long arg3) {
                 final String selection = daftar[arg2];
                 final CharSequence[] dialogitem = {"Hapus Data", "Edit Data"};
+                
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Pilihan");
                 builder.setItems(dialogitem, new DialogInterface.OnClickListener() {
@@ -121,6 +127,7 @@ public class MainActivity extends Activity {
                 builder.create().show();
             }
         });
+        
         ((ArrayAdapter) ListView01.getAdapter()).notifyDataSetInvalidated();
     }
     
