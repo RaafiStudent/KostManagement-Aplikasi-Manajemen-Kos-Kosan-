@@ -2,36 +2,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
-    android:background="@drawable/background_app" >
-
+    android:padding="20dp" >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit Nama Penghuni:"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF" />
-
-    <EditText
+        android:textStyle="bold" />
+        <EditText
         android:id="@+id/editTextNama"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#CCFFFFFF"
         android:padding="10dp"
         android:layout_marginBottom="10dp" />
-
-    <TextView
+        <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit Nomor Kamar:"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editTextKamar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#CCFFFFFF"
         android:padding="10dp"
         android:layout_marginBottom="10dp" />
 
@@ -39,14 +31,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit Status Pembayaran:"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editTextStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#CCFFFFFF"
         android:padding="10dp" />
 
     <Button
