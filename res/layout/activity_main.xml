@@ -1,9 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    android:background="@drawable/background_app" >
-
+    android:padding="10dp" >
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -11,25 +9,16 @@
         android:layout_centerHorizontal="true"
         android:text="MANAJEMEN KOS (Raafi)"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:shadowColor="#000000"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="2" />
-
-    <EditText
+        android:textStyle="bold" />
+        <EditText
         android:id="@+id/editCari"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="15dp"
         android:hint="Cari Nama Penghuni..."
-        android:background="#CCFFFFFF"
-        android:padding="10dp"
         android:drawableRight="@android:drawable/ic_menu_search" />
-
-    <Button
+        <Button
         android:id="@+id/btnTambah"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -52,9 +41,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnLogout"
-        android:layout_marginTop="10dp"
-        android:background="#E6FFFFFF"
-        android:padding="5dp" >
+        android:layout_marginTop="10dp" >
     </ListView>
-
-</RelativeLayout>
+    </RelativeLayout>
